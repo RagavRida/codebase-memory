@@ -1,176 +1,161 @@
 <p align="center">
-  <img src="https://img.shields.io/badge/works_with-7_AI_coding_tools-blueviolet?style=for-the-badge" alt="Works with 7 AI coding tools" />
-</p>
-
-<h1 align="center">codebase-memory</h1>
-
-<p align="center">
-  <strong>Give your AI coding assistant a permanent memory of your codebase.</strong>
-  <br />
-  One command. Zero maintenance. Every session starts with full project context.
-  <br /><br />
-  Works with <strong>Claude Code</strong> &bull; <strong>Cursor</strong> &bull; <strong>GitHub Copilot</strong> &bull; <strong>Windsurf</strong> &bull; <strong>Cline</strong> &bull; <strong>Aider</strong> &bull; <strong>Roo Code</strong>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/codebase--memory-give_your_AI_a_permanent_memory-white?style=for-the-badge&labelColor=0d1117&color=58a6ff">
+    <img alt="codebase-memory" src="https://img.shields.io/badge/codebase--memory-give_your_AI_a_permanent_memory-white?style=for-the-badge&labelColor=f6f8fa&color=0969da">
+  </picture>
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/v/codebase-memory.svg?style=flat-square&color=blue" alt="npm version" /></a>
-  <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/dm/codebase-memory.svg?style=flat-square&color=green" alt="npm downloads" /></a>
-  <a href="https://github.com/RagavRida/codebase-memory/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license" /></a>
-  <a href="https://github.com/RagavRida/codebase-memory"><img src="https://img.shields.io/github/stars/RagavRida/codebase-memory?style=flat-square&color=yellow" alt="stars" /></a>
+  Analyze once. Remember forever. Context from session one.
 </p>
 
----
+<p align="center">
+  <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/v/codebase-memory?style=flat-square&labelColor=0d1117&color=58a6ff" alt="npm" /></a>
+  <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/dm/codebase-memory?style=flat-square&labelColor=0d1117&color=2ea043" alt="downloads" /></a>
+  <a href="https://github.com/RagavRida/codebase-memory/blob/main/LICENSE"><img src="https://img.shields.io/github/license/RagavRida/codebase-memory?style=flat-square&labelColor=0d1117&color=8b949e" alt="license" /></a>
+  <a href="https://github.com/RagavRida/codebase-memory/stargazers"><img src="https://img.shields.io/github/stars/RagavRida/codebase-memory?style=flat-square&labelColor=0d1117&color=e3b341" alt="stars" /></a>
+</p>
 
-## The Problem
+<p align="center">
+  <sub>
+    <b>Claude Code</b>&ensp;&middot;&ensp;<b>Cursor</b>&ensp;&middot;&ensp;<b>GitHub Copilot</b>&ensp;&middot;&ensp;<b>Windsurf</b>&ensp;&middot;&ensp;<b>Cline</b>&ensp;&middot;&ensp;<b>Aider</b>&ensp;&middot;&ensp;<b>Roo Code</b>
+  </sub>
+</p>
 
-Every time you start a new AI coding session — in **any** IDE — your AI assistant has **zero memory** of your project. It re-reads files, re-discovers your stack, re-learns your patterns. On large codebases, this wastes tokens, wastes time, and produces inconsistent code.
+<br>
 
-**This happens in every tool**: Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Aider — all of them start from scratch every session.
+## Why
 
-## The Solution
+AI coding assistants start every session with zero knowledge of your project. They re-read files, re-discover your stack, and re-learn your conventions. On large codebases this burns through context windows, wastes time, and produces inconsistent suggestions.
 
-`codebase-memory` analyzes your codebase **once** and generates context files for **every major AI coding tool**. Your AI assistant loads these automatically at session start. No re-analysis. No wasted tokens. Instant context.
+`codebase-memory` fixes this. It performs a one-time deep analysis of your project and writes structured context files that your AI tool loads automatically at session start. The result: every session begins exactly where the last one left off.
 
 ```
-Without codebase-memory:                 With codebase-memory:
-┌──────────────────────────┐            ┌──────────────────────────┐
-│ Session 1: Scan 200 files │            │ Session 1: Auto-analyze  │
-│ Session 2: Scan 200 files │            │ Session 2: Load 1 file   │
-│ Session 3: Scan 200 files │            │ Session 3: Load 1 file   │
-│ ...slow every time        │            │ ...instant every time    │
-└──────────────────────────┘            └──────────────────────────┘
+Before                              After
+──────                              ─────
+Session 1  scan 200 files  slow     Session 1  analyze once     one-time
+Session 2  scan 200 files  slow     Session 2  load context     instant
+Session 3  scan 200 files  slow     Session 3  load context     instant
 ```
 
----
+<br>
 
-## Quick Start
+## Install
 
 ```bash
 npm install -g codebase-memory
 ```
 
-### Fully automatic (Claude Code)
+<br>
+
+## Quick start
+
+**Option A &mdash; Fully automatic** (Claude Code)
 
 ```bash
 codebase-memory setup
 ```
 
-After this, you never run another command. New projects are auto-analyzed, changes are auto-tracked, and memory is auto-updated when sessions end.
+Installs invisible hooks. New projects are auto-analyzed on first use, changes are tracked during work, and memory is updated when the session ends. Nothing else to do.
 
-### Any IDE / AI tool
+**Option B &mdash; Any AI tool**
 
 ```bash
 cd your-project
 codebase-memory analyze
 ```
 
-This generates context files for **all supported tools at once**:
+Generates context files for every supported tool in one pass.
 
-| File generated | AI tool | How it's loaded |
-|---|---|---|
-| `CLAUDE.md` + `.claude/rules/` | **Claude Code** | Auto-loaded at session start |
-| `.cursorrules` | **Cursor** | Auto-loaded at session start |
-| `.github/copilot-instructions.md` | **GitHub Copilot** | Auto-loaded at session start |
-| `.windsurfrules` | **Windsurf** | Auto-loaded at session start |
-| `.clinerules` | **Cline** | Auto-loaded at session start |
-| `CONVENTIONS.md` | **Aider** | Add `read: CONVENTIONS.md` to `.aider.conf.yml` |
-| `.roomodes` | **Roo Code** | Auto-loaded at session start |
+<br>
 
-**One command, all IDEs covered.**
+## Supported tools
 
----
+A single `analyze` creates the correct file for each tool:
 
-## What It Creates
+| Generated file | Tool | Loaded |
+|:--|:--|:--|
+| `CLAUDE.md` &plus; `.claude/rules/` | Claude Code | Automatically |
+| `.cursorrules` | Cursor | Automatically |
+| `.github/copilot-instructions.md` | GitHub Copilot | Automatically |
+| `.windsurfrules` | Windsurf | Automatically |
+| `.clinerules` | Cline | Automatically |
+| `CONVENTIONS.md` | Aider | Via `.aider.conf.yml` |
+| `.roomodes` | Roo Code | Automatically |
+
+<br>
+
+## What it generates
 
 ```
-your-project/
-├── CLAUDE.md                          # Claude Code
-├── .cursorrules                       # Cursor
-├── .windsurfrules                     # Windsurf
-├── .clinerules                        # Cline
-├── .roomodes                          # Roo Code
-├── CONVENTIONS.md                     # Aider
+project/
+├── CLAUDE.md                        Claude Code context
+├── .cursorrules                     Cursor context
+├── .windsurfrules                   Windsurf context
+├── .clinerules                      Cline context
+├── .roomodes                        Roo Code context
+├── CONVENTIONS.md                   Aider context
 ├── .github/
-│   └── copilot-instructions.md        # GitHub Copilot
+│   └── copilot-instructions.md      GitHub Copilot context
 └── .claude/
     └── rules/
-        ├── architecture.md            # Folder map, entry points, data flow
-        ├── stack.md                   # Tech stack, versions, all commands
-        ├── modules.md                 # Every module and what it does
-        ├── models.md                  # DB schemas, types, entities
-        ├── api.md                     # All routes and endpoints
-        ├── conventions.md             # Naming, patterns, testing approach
-        ├── gotchas.md                 # Quirks, workarounds, do-not-touch
-        └── changelog.md              # Auto-updated change log
+        ├── architecture.md          Folder map, entry points, data flow
+        ├── stack.md                 Languages, frameworks, versions, commands
+        ├── modules.md               Every module and its responsibility
+        ├── models.md                Database schemas, types, entities
+        ├── api.md                   Routes and endpoints
+        ├── conventions.md           Naming patterns, error handling, testing
+        ├── gotchas.md               Quirks, workarounds, do-not-touch files
+        └── changelog.md             Auto-updated change log
 ```
 
----
+<br>
 
-## Why Every Session Is Smarter
+## Detection coverage
 
-Your AI assistant already knows your entire project before you type anything:
+| Category | What's detected |
+|:--|:--|
+| Languages | JavaScript, TypeScript, Python, Go, Rust, Ruby, Java, Kotlin |
+| Frameworks | Next.js, React, Vue, Svelte, Express, FastAPI, Django, Flask, NestJS, Remix, Astro, Nuxt, SvelteKit, Hono, Koa, Fastify, Angular, Gatsby, Electron &plus; more |
+| Databases | PostgreSQL, MySQL, SQLite, MongoDB, Redis |
+| ORMs | Prisma, Drizzle, TypeORM, Sequelize, Mongoose, SQLAlchemy |
+| Package managers | npm, pnpm, yarn, bun, pip, uv, pipenv |
+| Testing | Vitest, Jest, Mocha, pytest, Playwright, Cypress |
+| Build tools | Vite, webpack, esbuild, Rollup, Turborepo |
+| Linting | ESLint, Prettier, Biome |
+| State management | Zustand, Redux, TanStack Query |
+| Infrastructure | Docker, docker-compose |
+| Structure | Entry points, route files, model files, API surfaces, naming conventions |
 
-| You ask | AI already knows from memory |
-|---------|------------------------------|
-| "Add a payment endpoint" | Routes live in `src/routes/`, you use Express, auth is JWT middleware |
-| "Fix the user model" | Schema is in `prisma/schema.prisma`, User has relations to Orders |
-| "Write tests for the API" | You use Vitest, tests go in `__tests__/`, run with `npm test` |
-| "Refactor the auth flow" | Auth middleware is in `src/middleware/auth.ts`, uses bcrypt + JWT |
-| "What database do we use?" | PostgreSQL 15 via Prisma ORM, connection string in DATABASE_URL |
+<br>
 
-**No scanning. No guessing. No wasted context window.** The knowledge is already loaded.
+## How automation works
 
----
-
-## How the Automation Works (Claude Code)
-
-The `setup` command installs 3 invisible hooks that run automatically:
+When you run `codebase-memory setup`, three Claude Code hooks are installed globally:
 
 ```
-┌───────────────────────────────────────────────────────────────┐
-│                     Claude Code Session                        │
-│                                                                │
-│  SESSION START ──→ PreToolUse hook fires                       │
-│    ├─ No CLAUDE.md? → auto-analyzes project in background      │
-│    └─ CLAUDE.md exists? → skips (instant)                      │
-│                                                                │
-│  DURING WORK ───→ PostToolUse hook fires on Write/Edit         │
-│    └─ Logs every changed file to changelog.md with timestamp   │
-│                                                                │
-│  SESSION END ───→ Stop hook fires                              │
-│    └─ Auto-updates memory: new modules, routes, models, cmds   │
-└───────────────────────────────────────────────────────────────┘
+Session start     PreToolUse hook checks for CLAUDE.md
+                  ├── missing → analyzes project in background
+                  └── present → skips instantly
+
+During work       PostToolUse hook fires on Write / Edit
+                  └── appends file path + timestamp to changelog.md
+
+Session end       Stop hook fires
+                  └── runs incremental update (new modules, routes, models)
 ```
 
-For other IDEs, run `codebase-memory analyze` once per project (or `codebase-memory update` after major changes).
+The session-start check uses a temp marker per project directory. After the first tool call it exits in microseconds.
 
----
+For tools other than Claude Code, run `codebase-memory analyze` once per project or `codebase-memory update` after significant changes.
 
-## What It Detects
+<br>
 
-| Category | Coverage |
-|----------|----------|
-| **Languages** | JavaScript, TypeScript, Python, Go, Rust, Ruby, Java/Kotlin |
-| **Frameworks** | Next.js, React, Vue, Svelte, Express, FastAPI, Django, Flask, NestJS, Remix, Astro, Nuxt, SvelteKit, Hono, Koa, Fastify, Angular, Gatsby, Electron, and more |
-| **Databases** | PostgreSQL, MySQL, SQLite, MongoDB, Redis |
-| **ORMs** | Prisma, Drizzle, TypeORM, Sequelize, Mongoose, SQLAlchemy |
-| **Package Managers** | npm, pnpm, yarn, bun, pip, uv, pipenv |
-| **Test Frameworks** | Vitest, Jest, Mocha, pytest, Playwright, Cypress |
-| **Build Tools** | Vite, webpack, esbuild, Rollup, Turborepo |
-| **Linters** | ESLint, Prettier, Biome |
-| **State Management** | Zustand, Redux, TanStack Query |
-| **Infrastructure** | Docker, docker-compose |
-| **Project Structure** | Entry points, route files, model files, API surfaces, folder conventions, naming patterns |
+## Change tracking
 
----
-
-## Automatic Change Tracking
-
-Every file your AI edits is logged:
+Every edit made by the AI is recorded:
 
 ```markdown
-# Memory Changelog
-
 ## 2026-04-14 — Initial analysis
 - Full codebase analyzed and memory files written
 - 12 modules mapped, 8 endpoints documented, 5 models captured
@@ -182,139 +167,111 @@ Every file your AI edits is logged:
 ### Session ended at 15:00
 **Recent commits:**
   a1b2c3d Add payment processing endpoint
-  d4e5f6g Update invoice model with status field
+  d4e5f6g Update invoice model
 ```
 
----
+<br>
 
-## Commands
+## CLI reference
 
-```bash
-codebase-memory setup              # One-time: install Claude Code auto-hooks
-codebase-memory analyze [dir]      # Analyze codebase + generate all IDE context files
-codebase-memory update [dir]       # Incremental update after changes
-codebase-memory restore [dir]      # Print project summary
-codebase-memory teardown           # Remove Claude Code hooks
+```
+codebase-memory <command> [options]
+
+Commands:
+  setup              Install global Claude Code hooks (one-time)
+  analyze [dir]      Full analysis + generate context for all IDEs
+  update  [dir]      Incremental update — append only what changed
+  restore [dir]      Print project summary from memory files
+  teardown           Remove global hooks
+
+Aliases:
+  s → setup    a → analyze    u → update    r → restore
 ```
 
----
-
-## Works With Every Project
-
-```bash
-cd ~/nextjs-saas && codebase-memory analyze
-# → Detects Next.js 14 + Prisma + PostgreSQL + Tailwind + Stripe
-
-cd ~/python-api && codebase-memory analyze
-# → Detects FastAPI + SQLAlchemy + Redis + pytest
-
-cd ~/go-microservice && codebase-memory analyze
-# → Detects Go modules + Docker + gRPC
-
-cd ~/react-native-app && codebase-memory analyze
-# → Detects React Native + Expo + TypeScript + Zustand
-```
-
----
+<br>
 
 ## Comparison
 
-| Feature | codebase-memory | Manual rules files | No context files |
-|---------|:-:|:-:|:-:|
-| Auto-generates from codebase | Yes | No (write by hand) | N/A |
-| Detects stack + frameworks | Yes | No | No |
-| Maps modules + routes + models | Yes | No | No |
-| Auto-tracks changes | Yes | No | No |
-| Auto-updates on session end | Yes | No | No |
-| Works across all AI IDEs | Yes | 1 IDE at a time | No |
-| Setup time | 30 seconds | Hours | N/A |
+| | codebase-memory | Manual rules files | No context |
+|:--|:-:|:-:|:-:|
+| Auto-generates from codebase | Yes | &mdash; | &mdash; |
+| Detects stack and frameworks | Yes | &mdash; | &mdash; |
+| Maps modules, routes, models | Yes | &mdash; | &mdash; |
+| Tracks changes automatically | Yes | &mdash; | &mdash; |
+| Updates memory on session end | Yes | &mdash; | &mdash; |
+| Covers 7 AI tools at once | Yes | 1 | &mdash; |
+| Time to set up | 30 seconds | Hours | &mdash; |
 
----
+<br>
 
 ## FAQ
 
 <details>
-<summary><strong>Does this work with [my IDE]?</strong></summary>
-
-If your AI coding tool reads any of these files, yes:
-- `CLAUDE.md` / `.claude/rules/` — Claude Code
-- `.cursorrules` — Cursor
-- `.github/copilot-instructions.md` — GitHub Copilot
-- `.windsurfrules` — Windsurf
-- `.clinerules` — Cline
-- `CONVENTIONS.md` — Aider
-- `.roomodes` — Roo Code
-
-All generated from one command.
+<summary>Does it work with my tool?</summary>
+<br>
+If your AI coding tool reads <code>.cursorrules</code>, <code>.github/copilot-instructions.md</code>, <code>.windsurfrules</code>, <code>.clinerules</code>, <code>CONVENTIONS.md</code>, <code>.roomodes</code>, or <code>CLAUDE.md</code>, yes. All are generated from one command.
 </details>
 
 <details>
-<summary><strong>Does it send my code anywhere?</strong></summary>
-
-No. Everything runs 100% locally. Memory files are plain markdown stored in your project directory. Nothing is uploaded, telemetried, or phoned home.
+<summary>Does it send code anywhere?</summary>
+<br>
+No. Everything runs locally. The output is plain markdown in your project directory. Nothing is uploaded or transmitted.
 </details>
 
 <details>
-<summary><strong>Will it slow down my IDE?</strong></summary>
-
-No. The context files are small (a few KB each). The Claude Code session-start hook uses a temp marker — subsequent tool calls skip in microseconds.
+<summary>Will it slow down my editor?</summary>
+<br>
+No. Context files are a few KB. The Claude Code hook exits in microseconds after the first check per session.
 </details>
 
 <details>
-<summary><strong>What if my project changes significantly?</strong></summary>
-
-Run `codebase-memory analyze` again for a fresh full scan. Or let the auto-update hook (Claude Code) catch incremental changes over time.
+<summary>What if the project changes significantly?</summary>
+<br>
+Run <code>codebase-memory analyze</code> again for a full rescan, or let the auto-update hook handle incremental changes.
 </details>
 
 <details>
-<summary><strong>Does it work in monorepos?</strong></summary>
-
-Yes. Run it from the root and it maps all top-level packages and services.
+<summary>Does it work in monorepos?</summary>
+<br>
+Yes. Run from the root to map all top-level packages and services.
 </details>
 
 <details>
-<summary><strong>Can I customize the generated files?</strong></summary>
-
-Yes. The generated files are plain markdown. Edit them freely — the update command only appends, never overwrites your changes.
+<summary>Can I edit the generated files?</summary>
+<br>
+Yes. They are plain markdown. The update command appends only — it never overwrites manual edits.
 </details>
 
----
+<br>
 
 ## Uninstall
 
 ```bash
-codebase-memory teardown           # Remove Claude Code hooks
-npm uninstall -g codebase-memory   # Remove package
+codebase-memory teardown             # remove hooks
+npm uninstall -g codebase-memory     # remove package
 ```
 
-To remove memory from a specific project:
+Remove memory from a specific project:
+
 ```bash
 rm -f CLAUDE.md .cursorrules .windsurfrules .clinerules .roomodes CONVENTIONS.md
 rm -rf .claude/rules/ .github/copilot-instructions.md
 ```
 
----
+<br>
 
 ## Contributing
 
-Contributions welcome. Open an issue or submit a PR.
+Issues and pull requests are welcome.
 
-If you'd like to add support for another AI coding tool, check `src/utils/ide-generator.js` — it's designed to be easily extensible.
+To add support for a new AI tool, see [`src/utils/ide-generator.js`](src/utils/ide-generator.js) — the architecture is designed for easy extension.
 
----
-
-## Star History
-
-If this tool saved you time, consider giving it a star. It helps others discover it.
-
-[![Star History Chart](https://api.star-history.com/svg?repos=RagavRida/codebase-memory&type=Date)](https://star-history.com/#RagavRida/codebase-memory&Date)
+<br>
 
 ---
 
 <p align="center">
-  <strong>Stop teaching your AI the same codebase every session.</strong>
-  <br />
   <code>npm install -g codebase-memory && codebase-memory setup</code>
-  <br /><br />
-  <sub>Built for developers who use AI coding tools daily and are tired of the cold-start problem.</sub>
+  <br><br>
+  <sub>Stop re-teaching your AI assistant the same codebase every session.</sub>
 </p>
