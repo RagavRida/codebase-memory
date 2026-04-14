@@ -22,6 +22,7 @@ import {
   sessionEndHook,
   hooksSettings
 } from '../templates/rules.js';
+import { generateAllIDEFiles } from '../utils/ide-generator.js';
 
 export async function analyze(targetDir) {
   const rootDir = path.resolve(targetDir);
@@ -320,10 +321,16 @@ ${envExample ? '- .env.example exists — copy to .env and fill in values' : '- 
 
   spinner5.succeed('Auto-tracking hooks installed');
 
-  // Step 6: Summary
+  // Step 6: Generate IDE-specific context files
+  const spinner6 = ora('Generating context files for all IDEs...').start();
+  const ideFiles = generateAllIDEFiles(rootDir);
+  spinner6.succeed(`Generated context for ${ideFiles.length} IDEs`);
+
+  // Step 7: Summary
   console.log(chalk.green('\n  Codebase memory stored + auto-tracking enabled.\n'));
-  console.log(chalk.dim('  Files written:'));
-  const writtenFiles = [
+
+  console.log(chalk.dim('  Claude Code:'));
+  const claudeFiles = [
     'CLAUDE.md',
     '.claude/rules/architecture.md',
     '.claude/rules/stack.md',
@@ -337,8 +344,22 @@ ${envExample ? '- .env.example exists — copy to .env and fill in values' : '- 
     '.claude/hooks/session-end.sh',
     '.claude/settings.json',
   ];
-  for (const f of writtenFiles) {
+  for (const f of claudeFiles) {
     console.log(chalk.dim(`    ${f}`));
+  }
+
+  console.log('');
+  console.log(chalk.dim('  Other IDEs:'));
+  const ideLabels = {
+    '.cursorrules': 'Cursor',
+    '.github/copilot-instructions.md': 'GitHub Copilot',
+    '.windsurfrules': 'Windsurf',
+    '.clinerules': 'Cline',
+    'CONVENTIONS.md': 'Aider',
+    '.roomodes': 'Roo Code',
+  };
+  for (const f of ideFiles) {
+    console.log(chalk.dim(`    ${f} ${chalk.cyan(`(${ideLabels[f] || ''})`)}`));
   }
 
   console.log('');
@@ -348,6 +369,7 @@ ${envExample ? '- .env.example exists — copy to .env and fill in values' : '- 
   console.log(`  ${chalk.cyan(files.length)} total files scanned`);
   console.log('');
   console.log(chalk.yellow('  Auto-tracking active — every file change is logged to changelog.md automatically.'));
+  console.log(chalk.green('  Works with: Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Aider, Roo Code'));
   console.log(chalk.green('  Re-analysis will NOT be needed in future sessions.\n'));
 }
 

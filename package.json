@@ -1,7 +1,7 @@
 {
   "name": "codebase-memory",
   "version": "1.0.0",
-  "description": "Deep one-time codebase analysis that stores structured knowledge in CLAUDE.md and .claude/rules/ so Claude Code never needs to re-analyze your project.",
+  "description": "Give your AI coding assistant a permanent memory of your codebase. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Aider, and Roo Code.",
   "type": "module",
   "main": "src/index.js",
   "bin": {
@@ -13,11 +13,23 @@
   "keywords": [
     "claude",
     "claude-code",
+    "cursor",
+    "cursorrules",
+    "github-copilot",
+    "copilot-instructions",
+    "windsurf",
+    "windsurfrules",
+    "cline",
+    "aider",
+    "roo-code",
     "codebase-analysis",
     "memory",
     "project-context",
     "ai-tools",
-    "developer-tools"
+    "developer-tools",
+    "ai-coding",
+    "context",
+    "rules-file"
   ],
   "author": "raghavendramachikatla",
   "repository": {
