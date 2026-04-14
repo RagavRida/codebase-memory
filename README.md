@@ -9,6 +9,7 @@
     <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/v/codebase-memory.svg?style=flat-square&color=blue" alt="npm version" /></a>
     <a href="https://www.npmjs.com/package/codebase-memory"><img src="https://img.shields.io/npm/dm/codebase-memory.svg?style=flat-square&color=green" alt="npm downloads" /></a>
     <a href="https://github.com/RagavRida/codebase-memory/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license" /></a>
+    <a href="https://github.com/RagavRida/codebase-memory"><img src="https://img.shields.io/github/stars/RagavRida/codebase-memory?style=flat-square&color=yellow" alt="stars" /></a>
   </p>
 </p>
 
