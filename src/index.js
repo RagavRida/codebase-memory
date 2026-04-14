@@ -10,8 +10,8 @@ const program = new Command();
 
 program
   .name('codebase-memory')
-  .description('Deep one-time codebase analysis for Claude Code. Stores structured knowledge in CLAUDE.md and .claude/rules/ so Claude never re-analyzes.')
-  .version('1.0.0');
+  .description('Give your AI coding assistant a permanent memory of your codebase. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Aider, and Roo Code.')
+  .version('1.1.0');
 
 program
   .command('analyze')

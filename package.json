@@ -1,6 +1,6 @@
 {
   "name": "codebase-memory",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Give your AI coding assistant a permanent memory of your codebase. Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, Aider, and Roo Code.",
   "type": "module",
   "main": "src/index.js",
